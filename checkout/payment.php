@@ -1,111 +1,43 @@
-<?php if(isset($_POST) && count($_POST) > 0): ?>
-
 <?php
 
-$activeMenu = 'checkout';
+include $_SERVER['DOCUMENT_ROOT'] . '/webstore/app/GlobalVariable.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/webstore/app/lang/lang.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/webstore/app/lib/omise-php/lib/Omise.php';
 
-include '../app/resources/app.header.php';
+define('OMISE_API_VERSION', $omise['apiv']);
+define('OMISE_PUBLIC_KEY', $omise['pkey']);
+define('OMISE_SECRET_KEY', $omise['skey']);
 
-// received result from paysbuy with data result,apCode,amt,fee,methos,confirm_cs
-$result = isset($_POST['result']) ? $_POST['result'] : '003';
-$paymentStatus = substr($result, 0,2);
-$invoiceId = substr($result, 2, strlen($result) - 2);
-$approveCode = isset($_POST['apCode']) ? $_POST['apCode'] : 123456;
-$amount = isset($_POST['amt']) ? $_POST['amt'] : 1000;
-$fee = isset($_POST['fee']) ? $_POST['fee'] : 3;
-$method = isset($_POST['method']) ? $_POST['method'] : '01';
+$charge = OmiseCharge::create(array(
+    'amount' => $_POST["totalPrice"],
+    'currency' => 'thb',
+    'card' => $_POST["omiseToken"],
+    'description' => 'Transaction No.: ' . $_POST['inv']
+));
 
-if ($paymentStatus == '00') {
-    if ($method == '06') {
-        $confirm_cs = strtolower(trim(isset($_POST['confirm_cs']) ? $_POST['confirm_cs'] : null));
-        if ($confirm_cs == 'true') {
-            $paymentStatus = '00';
-        }
-        else if ($confirm_cs == 'false') {
-            $paymentStatus = '99';
-        }
-        else {
-            $paymentStatus = '02';
-        }
-    }
-}
 ?>
 
-<div class="panel panel-<?=$paymentStatus == '00'? 'success': ($paymentStatus == '02' ? 'info' : 'danger')?>">
-    <div class="panel-heading"><?=$lang['label']['statusPayment']?>: <?=$lang['paysbuy']['status'][$paymentStatus]?></div>
-    <div class="panel-body">
-        <?php if($paymentStatus == '02') echo '*'.$lang['msg']['paymentDueDate'].'<br>';?>
-        *<?=$lang['msg']['informMessage']?>
-    </div>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <tbody>
-            <tr style="font-weight: bold;"><td style="width: 40%"><?=$lang['label']['invoiceNo']?></td><td aria-label="invoiceNo"></td></tr>
-            <tr><td style="width: 40%"><?=$lang['label']['customerName']?></td><td aria-label="customerName"></td></tr>
-            <tr><td style="width: 40%"><?=$lang['label']['telephone']?></td><td aria-label="telephone"></td></tr>
-            <tr><td style="width: 40%"><?=$lang['label']['email']?></td><td aria-label="email"></td></tr>
-            <tr><td style="width: 40%"><?=$lang['paysbuy']['approveCode']?></td><td aria-label="approveCode"></td></tr>
-            <tr><td style="width: 40%"><?=$lang['paysbuy']['amount']?></td><td aria-label="amount"></td></tr>
-            <tr><td style="width: 40%"><?=$lang['paysbuy']['fee']?></td><td aria-label="fee"></td></tr>
-            <tr><td style="width: 40%"><?=$lang['label']['paymentMethod']?></td><td aria-label="method"></td></tr>
-            <tr><td style="width: 40%"><?=$lang['label']['createAt']?></td><td aria-label="createdAt"></td></tr>
-            </tbody>
-        </table>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="<?=$host;?>/bootstrap/css/bootstrap.min.css">
+</head>
+
+
+<div style="display: flex; justify-content: center; align-items: center; height: 60%;">
+    <img src="<?=$host;?>/images/logo/cropped-rj-logo-180x180.png" style="border: 8px solid #4CAF50;border-radius: 50%;box-shadow: 8px 8px 32px -12px black; width: 128px;">
+    <div style="padding: 0px 24px;">
+        <h2>Transaction No.: <?=$_POST['inv'];?></h2>
+        <h4>
+<?php
+if ($charge['status'] == 'successful') {
+    echo $lang['msg']['transaction']['success'];
+} else {
+    echo $lang['msg']['transaction']['fail'];
+}
+?>
+        <h4>
+        <a href="<?=$host;?>" class="btn btn-warning">Go to Home</a>
     </div>
 </div>
-
-<script type="text/javascript">
-    $(function () {
-        $('#headerTitle').text('<?=$lang['label']['invoiceNo']?> <?=$invoiceId?>');
-        $('head > title').prepend('Invoice No. <?=$invoiceId?>');
-        $('#divContentRight').addClass('hidden');
-        $('#divContentCenter').removeClass('col-sm-6 col-md-8').addClass('col-sm-9 col-md-10');
-        $('#localization').addClass('hidden');
-
-        $.ajax({
-            url:  '<?=$host?>/app/services/invoice/updateInvoice.php',
-            method: 'post',
-            data: {
-                id: <?=$invoiceId?>,
-                approveCode: '<?=$approveCode?>',
-                amount: <?=$amount?>,
-                fee: <?=$fee?>,
-                method: '<?=$method?>',
-                status: '<?=$paymentStatus == "00" ? 'a' : 'i'?>'
-            },
-            dataType: 'json',
-            success: function (response) {
-                if (response.success == true) {
-                }
-            }
-        });
-
-        $.ajax({
-            url:  '<?=$host?>/app/services/invoice/getInvoice.php',
-            method: 'post',
-            data: { id: <?=$invoiceId?> },
-            dataType: 'json',
-            success: function (response) {
-                if (response.success == true) {
-                    var inv = response.data[0];
-                    $('td[aria-label="invoiceNo"]').text(inv.id);
-                    $('td[aria-label="customerName"]').text(inv.customer_name);
-                    $('td[aria-label="telephone"]').text(inv.customer_tel);
-                    $('td[aria-label="email"]').text(inv.customer_email);
-                    $('td[aria-label="approveCode"]').text(inv.approve_code);
-                    var amount = '฿' + parseFloat(inv.amount).toLocaleString();
-                    $('td[aria-label="amount"]').text(amount);
-                    var fee = '฿' + parseFloat(inv.fee).toLocaleString();
-                    $('td[aria-label="fee"]').text(fee);
-                    var method = <?=json_encode($lang['paysbuy']['method'])?>;
-                    $('td[aria-label="method"]').text(method[inv.method]);
-                    $('td[aria-label="createdAt"]').text(new Date(inv.created_at).toLocaleString());
-                }
-            }
-        });
-    });
-</script>
-
-<?php include '../app/resources/app.footer.php'; ?>
-
-<?php endif; ?>

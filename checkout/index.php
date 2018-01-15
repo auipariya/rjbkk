@@ -1,38 +1,39 @@
 <?php
 
 include $_SERVER['DOCUMENT_ROOT'] . '/webstore/app/GlobalVariable.php';
-
-$psbId = $paysbuyAcc['psbID'];
-$account = $paysbuyAcc['biz'];
-$price = $_SESSION['totalPrice'];
-$postURL = $host . "/checkout/payment.php";
-$description = $_POST['name'];
-if($_POST['telephone'] != '' && $_POST['email'] != '') {
-    $description .= ', Contact: ' . $_POST['telephone'] . '(' . $_POST['email'] . ')';
-}
-else if ($_POST['telephone'] != '') {
-    $description .= ', Contact: ' . $_POST['telephone'];
-}
-else if ($_POST['email'] != '') {
-    $description .= ', Contact: ' . $_POST['email'];
-}
 ?>
-<!--
-DEMO: http://demo.paysbuy.com/paynow.aspx
-PROD: https://www.paysbuy.com/paynow.aspx
--->
-<form method="post" action="https://www.paysbuy.com/paynow.aspx">
-    <input type="hidden" name="psb" value="<?=$psbId?>"/>
-    <input type="hidden" name="biz" value="<?=$account?>"/>
-    <input type="hidden" name="inv" value=""/>
-    <input type="hidden" name="itm" value="<?=$description?>"/>
-    <input type="hidden" name="amt" value="<?=$price?>"/>
-    <input type="hidden" name="postURL" value="<?=$postURL?>"/>
-</form >
+
+<form method="POST" action="payment.php">
+    <input type="hidden" name="totalPrice" value="">
+    <input type="hidden" name="inv" value="">
+    <!-- Create your own button -->
+    <button type="submit" id="btnCheckout" style="display: none;">Checkout</button>
+</form>
+
 
 <script src="<?=$host?>/js/jquery.min.js"></script>
+<!-- Include card.js library -->
+<script type="text/javascript" src="https://cdn.omise.co/omise.js"></script>
+<!-- Config the card.js library -->
 <script type="text/javascript">
     $(function () {
+        // Set default parameters
+        OmiseCard.configure({
+            publicKey: '<?=$omise['pkey']?>',
+            image: '<?php echo $host ?>/images/logo/cropped-rj-logo-192x192.png',
+            amount: '<?=$_SESSION['totalPrice']?>00',
+            currency: 'thb',
+        });
+        // Configuring your own custom button
+        OmiseCard.configureButton('#btnCheckout', {
+            frameLabel: "ROCKIN' JUMP",
+            frameDescription: 'Bangkok, Thailand'
+        });
+        // Then, attach all of the config and initiate it by 'OmiseCard.attach();' method
+        OmiseCard.attach();
+
+        $('input[name=totalPrice]').val('<?=$_SESSION['totalPrice']?>00');
+
         $.ajax({
             url:  '<?=$host?>/app/services/invoice/addInvoice.php',
             method: 'post',
@@ -41,7 +42,7 @@ PROD: https://www.paysbuy.com/paynow.aspx
             success: function (response) {
                 if (response.success == true) {
                     $('input[name=inv]').val(response.data[0]['invoiceNo']);
-                    $('form').trigger('submit');
+                    $('form > button').click();
                 }
             }
         });

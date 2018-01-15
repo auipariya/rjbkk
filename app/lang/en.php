@@ -86,6 +86,10 @@ $lang = [
         'notFound' => 'Not found data.',
         'paymentDueDate' => 'Please make payment within 7 days.',
         'informMessage' => 'Please inform your email/message confirmation payment from Paysbuy.',
+        'transaction' => [
+            'success' => 'Successful transaction',
+            'fail' => 'Transaction failed'
+        ]
     ],
 
     /**

@@ -28,7 +28,7 @@ $virtualDir = $_SERVER['DOCUMENT_ROOT'] . '/' . $appName;
 /**
  * MySQL
  */
-if ($_SERVER['SERVER_NAME'] == 'localhost') {
+if ($_SERVER['SERVER_NAME'] != 'www.bangkok-rockinjump.com') {
     $hostName = 'localhost';                // host name
     $hostUser = 'root';         			// user
     $hostPass = '';             	        // password
@@ -133,4 +133,13 @@ $paysbuyAcc = [
     'biz' => 'contact@bangkok-rockinjump.com',
     //'biz' => 'areerat@bangkok-rockinjump.com',
     'secureCode' => 'E48248A02613F9AE009C5F9F0658C0BA'
+];
+
+/**
+ * Omise account
+ */
+$omise = [
+    'pkey' => 'pkey_test_5a7aigtfk8mrzkqms1q',
+    'skey' => 'skey_test_5a7aigtg5thdjbp7ez4',
+    'apiv' => '2017-11-02'
 ];
