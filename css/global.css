@@ -1,0 +1,34 @@
+*, a, a:active, a:focus,
+button, button:focus, button:active,
+input[type='image'], input[type='button'],
+.btn, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn.active.focus {
+    outline: 0 none;
+}
+
+.modal-loading {
+    background: rgba(255, 255, 255, .8) url('../images/processing.gif') 50% 50% no-repeat;
+    display:    block;
+    position:   fixed;
+    z-index:    10000;
+    top:        0;
+    left:       0;
+    bottom:     0;
+    right:      0;
+}
+
+.list .alert {
+    margin-bottom: 8px;
+    padding: 8px;
+}
+
+.list .alert a {
+    text-decoration: none;
+}
+
+.list .alert a > i {
+    font-size: 130%;
+}
+
+td.day.disabled {
+    color: #cccccc !important;
+}
