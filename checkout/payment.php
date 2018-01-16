@@ -9,9 +9,9 @@ define('OMISE_PUBLIC_KEY', $omise['pkey']);
 define('OMISE_SECRET_KEY', $omise['skey']);
 
 $charge = OmiseCharge::create(array(
-    'amount' => $_POST["totalPrice"],
+    'amount' => $_POST['totalPrice'],
     'currency' => 'thb',
-    'card' => $_POST["omiseToken"],
+    'card' => $_POST['omiseToken'],
     'description' => 'Transaction No.: ' . $_POST['inv']
 ));
 ?>
