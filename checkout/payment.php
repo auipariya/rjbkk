@@ -14,7 +14,6 @@ $charge = OmiseCharge::create(array(
     'card' => $_POST["omiseToken"],
     'description' => 'Transaction No.: ' . $_POST['inv']
 ));
-
 ?>
 
 <head>
@@ -41,3 +40,22 @@ if ($charge['status'] == 'successful') {
         <a href="<?=$host;?>" class="btn btn-warning">Go to Home</a>
     </div>
 </div>
+
+<?php if ($charge['status'] == 'successful') { ?>
+<script src="<?=$host?>/js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            url:  '<?=$host?>/app/services/invoice/sendEmail.php',
+            method: 'post',
+            data: { id: '<?=$_POST['inv']?>' },
+            dataType: 'json',
+            success: function (response) {
+                console.log(response);
+                if (response.success == true) {
+                }
+            }
+        });
+    });
+</script>
+<?php } ?>

@@ -143,3 +143,12 @@ $omise = [
     'skey' => 'skey_test_5a7aigtg5thdjbp7ez4',
     'apiv' => '2017-11-02'
 ];
+
+/**
+ * Email config
+ */
+$email = [
+    'mailServer' => 'mail.bangkok-rockinjump.com',
+    'sender' => 'pariya.kam@mail.kmutt.ac.th',
+    'senderName' => "ROCKIN' JUMP Bangkok"
+];

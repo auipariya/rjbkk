@@ -36,22 +36,22 @@ CREATE TABLE IF NOT EXISTS `st_class` (
   `status` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'i',
   PRIMARY KEY (`id`),
   UNIQUE KEY `st_class_name_unique` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=25 ;
 
 --
 -- dump ตาราง `st_class`
 --
 
 INSERT INTO `st_class` (`id`, `name`, `duration_from`, `duration_to`, `ticket_time_inherit`, `quota`, `status`) VALUES
-(1, 'Tripwire (Laser Room)', '2017-01-01', '2017-12-31', 0, 50, 'a'),
+(1, 'Tripwire (Laser Room)', '2017-01-01', '2017-12-31', 0, 50, 'i'),
 (9, 'OPEN JUMP (Weekends & Holidays)', '2016-09-01', '2016-12-31', 0, 50, 'i'),
 (10, 'OCTOBER (School Break Special)', '2016-10-01', '2016-10-30', 0, 50, 'i'),
-(11, 'STANDARD JUMP TIME', '2017-06-26', '2017-08-18', 0, 50, 'a'),
+(11, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-10-01', '2017-10-29', 0, 50, 'a'),
 (12, 'Children''s day (ONLY @ Sat 14 Jan 17) : Come 2 pay for 1', '2017-01-13', '2017-01-14', 0, 50, 'i'),
-(18, 'ROCKIN'' MONDAYS (exclude Holidays)', '2016-11-01', '2017-03-31', 0, 50, 'a'),
-(19, 'ROCKIN'' TUESDAYS (exclude Holidays)', '2016-11-01', '2017-03-31', 0, 50, 'a'),
-(20, 'ROCKIN'' THURSDAYS (exclude Holidays)', '2016-11-01', '2017-03-31', 0, 50, 'a'),
-(21, 'ROCKIN'' FRIDAYS (700 Baht/ 4 Hrs. @ 4-8PM)', '2017-06-23', '2017-12-31', 1, 50, 'a'),
+(18, 'ROCKIN'' MONDAYS (Unlimited jump 490 baht/ exclude holidays)', '2016-11-01', '2017-03-31', 0, 50, 'a'),
+(19, 'ROCKIN'' TUESDAYS (Unlimited jump 490 baht/ exclude holidays)', '2016-11-01', '2017-03-31', 0, 50, 'a'),
+(20, 'ROCKIN'' THURSDAYS (2 hrs. 390 baht/ exclude holidays)', '2016-11-01', '2017-12-31', 0, 50, 'a'),
+(21, 'ROCKIN'' FRIDAYS (700 Baht/ 4 hrs. @ 4-8PM/ exclude holidays)', '2017-06-23', '2017-12-31', 1, 50, 'a'),
 (22, 'ROCKIN'' FUN PACK (SAT & SUN ONLY)', '2017-06-24', '2017-12-31', 1, 50, 'a'),
 (23, 'ROCKIN'' ROBICS', '2016-09-01', '2016-12-31', 1, 10, 'a'),
 (24, 'ROCKIN'' GYMNASTICS ON TRAMPOLINES', '2016-09-01', '2016-12-31', 1, 10, 'a');
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `st_class_daytime` (
   `status` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'a',
   PRIMARY KEY (`id`),
   KEY `st_class_daytime_class_id_foreign` (`class_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=493 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=575 ;
 
 --
 -- dump ตาราง `st_class_daytime`
@@ -448,7 +448,7 @@ INSERT INTO `st_class_daytime` (`id`, `class_id`, `day`, `duration_from`, `durat
 (451, 18, '1', '14:00:00', '19:30:00', 'i'),
 (452, 19, '2', '14:00:00', '19:30:00', 'i'),
 (453, 20, '4', '14:00:00', '19:30:00', 'i'),
-(454, 23, '3', '19:00:00', '20:00:00', 'a'),
+(454, 23, '3', '19:00:00', '20:00:00', 'i'),
 (455, 24, '4', '16:30:00', '17:30:00', 'i'),
 (456, 24, '4', '17:30:00', '18:30:00', 'i'),
 (457, 11, '0', '10:00:00', '19:30:00', 'i'),
@@ -460,31 +460,113 @@ INSERT INTO `st_class_daytime` (`id`, `class_id`, `day`, `duration_from`, `durat
 (463, 11, '2', '14:00:00', '19:30:00', 'i'),
 (464, 18, '1', '14:00:00', '19:30:00', 'i'),
 (465, 19, '2', '14:00:00', '19:30:00', 'i'),
-(466, 11, '0', '10:00:00', '19:30:00', 'a'),
-(467, 11, '6', '10:00:00', '19:30:00', 'a'),
-(468, 11, '1', '11:00:00', '19:30:00', 'a'),
-(469, 11, '2', '11:00:00', '19:30:00', 'a'),
-(470, 11, '3', '11:00:00', '19:30:00', 'a'),
-(471, 11, '4', '11:00:00', '19:30:00', 'a'),
-(472, 11, '5', '11:00:00', '19:30:00', 'a'),
-(473, 19, '2', '11:00:00', '19:30:00', 'a'),
-(474, 18, '1', '11:00:00', '19:30:00', 'a'),
-(475, 20, '4', '11:00:00', '19:30:00', 'a'),
-(476, 24, '4', '16:30:00', '17:30:00', 'a'),
-(477, 24, '4', '17:30:00', '18:30:00', 'a'),
-(478, 1, '0', '10:00:00', '20:00:00', 'a'),
-(479, 1, '1', '11:00:00', '20:00:00', 'a'),
-(480, 1, '2', '11:00:00', '20:00:00', 'a'),
-(481, 1, '3', '11:00:00', '20:00:00', 'a'),
-(482, 1, '4', '11:00:00', '20:00:00', 'a'),
-(483, 1, '5', '11:00:00', '20:00:00', 'a'),
-(484, 1, '6', '10:00:00', '20:00:00', 'a'),
+(466, 11, '0', '10:00:00', '19:30:00', 'i'),
+(467, 11, '6', '10:00:00', '19:30:00', 'i'),
+(468, 11, '1', '11:00:00', '19:30:00', 'i'),
+(469, 11, '2', '11:00:00', '19:30:00', 'i'),
+(470, 11, '3', '11:00:00', '19:30:00', 'i'),
+(471, 11, '4', '11:00:00', '19:30:00', 'i'),
+(472, 11, '5', '11:00:00', '19:30:00', 'i'),
+(473, 19, '2', '11:00:00', '19:30:00', 'i'),
+(474, 18, '1', '11:00:00', '19:30:00', 'i'),
+(475, 20, '4', '11:00:00', '19:30:00', 'i'),
+(476, 24, '4', '16:30:00', '17:30:00', 'i'),
+(477, 24, '4', '17:30:00', '18:30:00', 'i'),
+(478, 1, '0', '10:00:00', '20:00:00', 'i'),
+(479, 1, '1', '11:00:00', '20:00:00', 'i'),
+(480, 1, '2', '11:00:00', '20:00:00', 'i'),
+(481, 1, '3', '11:00:00', '20:00:00', 'i'),
+(482, 1, '4', '11:00:00', '20:00:00', 'i'),
+(483, 1, '5', '11:00:00', '20:00:00', 'i'),
+(484, 1, '6', '10:00:00', '20:00:00', 'i'),
 (487, 21, '5', '04:00:00', '19:00:00', 'i'),
-(488, 21, '5', '04:00:00', '19:00:00', 'a'),
+(488, 21, '5', '04:00:00', '19:00:00', 'i'),
 (489, 22, '6', '10:00:00', '19:00:00', 'i'),
 (490, 22, '0', '10:00:00', '19:00:00', 'i'),
-(491, 22, '0', '10:00:00', '19:00:00', 'a'),
-(492, 22, '6', '10:00:00', '19:00:00', 'a');
+(491, 22, '0', '10:00:00', '19:00:00', 'i'),
+(492, 22, '6', '10:00:00', '19:00:00', 'i'),
+(493, 11, '0', '10:00:00', '19:30:00', 'i'),
+(494, 11, '6', '10:00:00', '19:30:00', 'i'),
+(495, 11, '1', '14:00:00', '19:30:00', 'i'),
+(496, 11, '2', '14:00:00', '19:30:00', 'i'),
+(497, 11, '3', '14:00:00', '19:30:00', 'i'),
+(498, 11, '4', '14:00:00', '19:30:00', 'i'),
+(499, 11, '5', '14:00:00', '19:30:00', 'i'),
+(500, 18, '1', '14:00:00', '19:30:00', 'i'),
+(501, 19, '2', '14:00:00', '19:30:00', 'i'),
+(502, 20, '4', '14:00:00', '19:30:00', 'i'),
+(503, 20, '4', '14:00:00', '19:30:00', 'i'),
+(504, 21, '5', '04:00:00', '19:00:00', 'i'),
+(505, 23, '3', '19:00:00', '20:00:00', 'i'),
+(506, 24, '4', '16:30:00', '17:30:00', 'i'),
+(507, 24, '4', '17:30:00', '18:30:00', 'i'),
+(508, 23, '3', '19:00:00', '20:00:00', 'i'),
+(509, 23, '3', '19:00:00', '20:00:00', 'a'),
+(510, 21, '5', '04:00:00', '19:00:00', 'i'),
+(511, 21, '5', '04:00:00', '19:00:00', 'i'),
+(512, 18, '1', '14:00:00', '19:30:00', 'i'),
+(513, 21, '5', '04:00:00', '19:00:00', 'i'),
+(514, 19, '2', '14:00:00', '19:30:00', 'i'),
+(515, 18, '1', '14:00:00', '19:30:00', 'i'),
+(516, 19, '2', '14:00:00', '19:30:00', 'i'),
+(517, 20, '4', '14:00:00', '19:30:00', 'i'),
+(518, 20, '4', '14:00:00', '19:30:00', 'i'),
+(519, 21, '5', '04:00:00', '19:00:00', 'i'),
+(520, 11, '0', '10:00:00', '19:30:00', 'i'),
+(521, 11, '1', '14:00:00', '19:30:00', 'i'),
+(522, 11, '2', '14:00:00', '19:30:00', 'i'),
+(523, 11, '3', '14:00:00', '19:30:00', 'i'),
+(524, 11, '4', '14:00:00', '19:30:00', 'i'),
+(525, 11, '5', '14:00:00', '19:30:00', 'i'),
+(526, 11, '6', '10:00:00', '19:30:00', 'i'),
+(527, 11, '0', '10:00:00', '19:30:00', 'i'),
+(528, 11, '1', '14:00:00', '19:30:00', 'i'),
+(529, 11, '2', '14:00:00', '19:30:00', 'i'),
+(530, 11, '3', '14:00:00', '19:30:00', 'i'),
+(531, 11, '4', '14:00:00', '19:30:00', 'i'),
+(532, 11, '5', '14:00:00', '19:30:00', 'i'),
+(533, 11, '6', '10:00:00', '19:30:00', 'i'),
+(534, 21, '5', '04:00:00', '19:00:00', 'i'),
+(535, 21, '5', '04:00:00', '19:00:00', 'i'),
+(536, 11, '0', '10:00:00', '19:30:00', 'i'),
+(537, 11, '6', '10:00:00', '19:30:00', 'i'),
+(538, 11, '1', '11:00:00', '19:00:00', 'i'),
+(539, 11, '2', '11:00:00', '19:00:00', 'i'),
+(540, 11, '3', '11:00:00', '19:00:00', 'i'),
+(541, 11, '4', '11:00:00', '19:00:00', 'i'),
+(542, 11, '5', '11:00:00', '19:00:00', 'i'),
+(543, 18, '1', '11:00:00', '19:00:00', 'i'),
+(544, 19, '2', '11:00:00', '19:00:00', 'i'),
+(545, 20, '4', '11:00:00', '18:00:00', 'i'),
+(546, 21, '5', '11:00:00', '16:00:00', 'i'),
+(547, 22, '0', '10:00:00', '19:00:00', 'i'),
+(548, 22, '6', '10:00:00', '19:00:00', 'i'),
+(549, 24, '4', '16:30:00', '17:30:00', 'i'),
+(550, 24, '4', '17:30:00', '18:30:00', 'i'),
+(551, 21, '5', '11:00:00', '16:00:00', 'i'),
+(552, 1, '0', '10:00:00', '20:00:00', 'a'),
+(553, 1, '1', '11:00:00', '20:00:00', 'a'),
+(554, 1, '2', '11:00:00', '20:00:00', 'a'),
+(555, 1, '3', '11:00:00', '20:00:00', 'a'),
+(556, 1, '4', '11:00:00', '20:00:00', 'a'),
+(557, 1, '5', '11:00:00', '20:00:00', 'a'),
+(558, 1, '6', '10:00:00', '20:00:00', 'a'),
+(559, 11, '0', '10:00:00', '19:30:00', 'a'),
+(560, 11, '6', '10:00:00', '19:30:00', 'a'),
+(561, 11, '1', '14:00:00', '19:00:00', 'a'),
+(562, 11, '2', '14:00:00', '19:00:00', 'a'),
+(563, 11, '3', '14:00:00', '19:00:00', 'a'),
+(564, 11, '4', '14:00:00', '19:00:00', 'a'),
+(565, 11, '5', '14:00:00', '19:00:00', 'a'),
+(566, 18, '1', '14:00:00', '19:00:00', 'a'),
+(567, 19, '2', '14:00:00', '19:00:00', 'a'),
+(568, 20, '4', '14:00:00', '19:00:00', 'a'),
+(569, 21, '5', '16:00:00', '20:00:00', 'i'),
+(570, 21, '5', '16:00:00', '20:00:00', 'a'),
+(571, 22, '0', '10:00:00', '19:00:00', 'a'),
+(572, 22, '6', '10:00:00', '19:00:00', 'a'),
+(573, 24, '4', '16:30:00', '17:30:00', 'a'),
+(574, 24, '4', '17:30:00', '18:30:00', 'a');
 
 -- --------------------------------------------------------
 
@@ -501,7 +583,7 @@ CREATE TABLE IF NOT EXISTS `st_class_ticket` (
   `status` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'a',
   PRIMARY KEY (`id`),
   KEY `st_class_ticket_class_id_foreign` (`class_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=377 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=428 ;
 
 --
 -- dump ตาราง `st_class_ticket`
@@ -790,26 +872,77 @@ INSERT INTO `st_class_ticket` (`id`, `class_id`, `name`, `minute`, `price`, `sta
 (353, 18, 'Unlimited Jump (Monday)', 0, '350.00', 'i'),
 (354, 19, 'Unlimited Jump (Tuesday)', 0, '350.00', 'i'),
 (355, 20, 'Student Day', 120, '390.00', 'i'),
-(356, 23, 'Regular Class', 60, '600.00', 'a'),
-(357, 23, 'Package (10 FREE 10 Classes)', 60, '5000.00', 'a'),
+(356, 23, 'Regular Class', 60, '600.00', 'i'),
+(357, 23, 'Package (10 FREE 10 Classes)', 60, '5000.00', 'i'),
 (358, 24, 'Package Group Class (11 Classes)', 0, '10000.00', 'i'),
 (359, 24, 'Group Class', 60, '600.00', 'i'),
 (360, 11, '60 Minutes of Jump', 60, '350.00', 'i'),
 (361, 11, '120 Minutes of Jump', 120, '700.00', 'i'),
 (362, 18, 'Unlimited Jump (Monday)', 0, '490.00', 'i'),
 (363, 19, 'Unlimited Jump (Tuesday)', 0, '490.00', 'i'),
-(364, 11, '60 Minutes of Jump', 60, '350.00', 'a'),
-(365, 11, '120 Minutes of Jump', 120, '700.00', 'a'),
-(366, 19, 'Unlimited Jump (Tuesday)', 0, '490.00', 'a'),
-(367, 18, 'Unlimited Jump (Monday)', 0, '490.00', 'a'),
-(368, 20, 'Student Day', 120, '390.00', 'a'),
-(369, 24, 'Package Group Class (11 Classes)', 0, '10000.00', 'a'),
-(370, 24, 'Group Class', 60, '600.00', 'a'),
-(371, 1, 'Tripwire (2 Games)', 2, '45.00', 'a'),
+(364, 11, '60 Minutes of Jump', 60, '350.00', 'i'),
+(365, 11, '120 Minutes of Jump', 120, '700.00', 'i'),
+(366, 19, 'Unlimited Jump (Tuesday)', 0, '490.00', 'i'),
+(367, 18, 'Unlimited Jump (Monday)', 0, '490.00', 'i'),
+(368, 20, 'Student Day', 120, '390.00', 'i'),
+(369, 24, 'Package Group Class (11 Classes)', 0, '10000.00', 'i'),
+(370, 24, 'Group Class', 60, '600.00', 'i'),
+(371, 1, 'Tripwire (2 Games)', 2, '45.00', 'i'),
 (373, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'i'),
-(374, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'a'),
+(374, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'i'),
 (375, 22, 'Fun Pack (4 Jumpers + Food & Drink)', 60, '1290.00', 'i'),
-(376, 22, 'Fun Pack (4 Jumpers + Food & Drink)', 60, '1290.00', 'a');
+(376, 22, 'Fun Pack (4 Jumpers + Food & Drink)', 60, '1290.00', 'i'),
+(377, 11, '60 Minutes of Jump', 60, '350.00', 'i'),
+(378, 11, '120 Minutes of Jump', 120, '700.00', 'i'),
+(379, 18, 'Unlimited Jump (Monday)', 0, '490.00', 'i'),
+(380, 19, 'Unlimited Jump (Tuesday)', 0, '490.00', 'i'),
+(381, 20, 'Student Day', 120, '390.00', 'i'),
+(382, 20, 'Student Day', 120, '390.00', 'i'),
+(383, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'i'),
+(384, 23, 'Regular Class', 60, '600.00', 'i'),
+(385, 23, 'Package (10 FREE 10 Classes)', 60, '5000.00', 'i'),
+(386, 24, 'Package Group Class (11 Classes)', 0, '10000.00', 'i'),
+(387, 24, 'Group Class', 60, '600.00', 'i'),
+(388, 23, 'Regular Class', 60, '600.00', 'i'),
+(389, 23, 'Regular Class', 60, '600.00', 'a'),
+(390, 23, 'Package (11 Classes)', 60, '5000.00', 'a'),
+(391, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'i'),
+(392, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'i'),
+(393, 18, 'Unlimited Jump (Monday)', 0, '490.00', 'i'),
+(394, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'i'),
+(395, 19, 'Unlimited Jump (Tuesday)', 0, '490.00', 'i'),
+(396, 18, 'Unlimited Jump (Monday)', 0, '490.00', 'i'),
+(397, 19, 'Unlimited Jump (Tuesday)', 0, '490.00', 'i'),
+(398, 20, 'Student Day', 120, '390.00', 'i'),
+(399, 20, 'Student Day', 120, '390.00', 'i'),
+(400, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'i'),
+(401, 11, '60 Minutes of Jump', 60, '350.00', 'i'),
+(402, 11, '120 Minutes of Jump', 120, '700.00', 'i'),
+(403, 11, '60 Minutes of Jump', 60, '350.00', 'i'),
+(404, 11, '120 Minutes of Jump', 120, '700.00', 'i'),
+(405, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'i'),
+(406, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'i'),
+(407, 11, '60 Minutes of Jump', 60, '350.00', 'i'),
+(408, 11, '120 Minutes of Jump', 120, '700.00', 'i'),
+(409, 18, 'Unlimited Jump (Monday)', 0, '490.00', 'i'),
+(410, 19, 'Unlimited Jump (Tuesday)', 0, '490.00', 'i'),
+(411, 20, 'Student Day', 120, '390.00', 'i'),
+(412, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'i'),
+(413, 22, 'Fun Pack (4 Jumpers + Food & Drink)', 60, '1290.00', 'i'),
+(414, 24, 'Package Group Class (11 Classes)', 0, '10000.00', 'i'),
+(415, 24, 'Group Class', 60, '600.00', 'i'),
+(416, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'i'),
+(417, 1, 'Tripwire (2 Games)', 2, '45.00', 'a'),
+(418, 11, '60 Minutes of Jump', 60, '350.00', 'a'),
+(419, 11, '120 Minutes of Jump', 120, '700.00', 'a'),
+(420, 18, 'Unlimited Jump (Monday)', 0, '490.00', 'a'),
+(421, 19, 'Unlimited Jump (Tuesday)', 0, '490.00', 'a'),
+(422, 20, 'Student Day', 120, '390.00', 'a'),
+(423, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'i'),
+(424, 21, 'Rockin'' Friday (4 hrs.@4-8pm)', 240, '700.00', 'a'),
+(425, 22, 'Fun Pack (4 Jumpers + Food & Drink)', 60, '1290.00', 'a'),
+(426, 24, 'Package Group Class (11 Classes)', 0, '10000.00', 'a'),
+(427, 24, 'Group Class', 60, '600.00', 'a');
 
 -- --------------------------------------------------------
 
@@ -829,7 +962,7 @@ CREATE TABLE IF NOT EXISTS `st_invoice` (
   `status` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'i',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=97 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=138 ;
 
 --
 -- dump ตาราง `st_invoice`
@@ -839,16 +972,16 @@ INSERT INTO `st_invoice` (`id`, `customer_name`, `customer_tel`, `customer_email
 (1, 'James Moloney', '0850648115', 'james.moloney@protonmail.com', '13525784', '800.00', '30.00', '02', 'a', '2016-07-24 23:45:33'),
 (2, 'PAWANRAT', '0914050202', 'pantarat_seme@msn.com', '13546539', '400.00', '13.91', '05', 'a', '2016-07-27 06:01:41'),
 (3, 'caroline zerrini', '091 984 0700', 'carolinezerrini@gmail.com', NULL, NULL, NULL, NULL, 'i', '2016-08-02 05:43:27'),
-(4, 'caroline', '919840700', 'carolinezerrini@gmail.com', NULL, NULL, NULL, NULL, 'i', '2016-08-06 04:17:10'),
+(4, 'caroline', '919840700', 'carolinezerrini@gmail.com', '13648455', '800.00', '30.00', '02', 'a', '2016-08-06 04:17:10'),
 (5, 'Chadawan kiryu', '0926709392', 'tchadawa@hotmail.com', '13675924', '1200.00', '41.73', '05', 'a', '2016-08-09 04:17:09'),
 (6, '', '', '', NULL, NULL, NULL, NULL, 'i', '2016-08-09 04:51:31'),
 (7, 'Simon Colvey', '+66852470100', 'simon@colvey.net', NULL, NULL, NULL, NULL, 'i', '2016-08-18 10:45:29'),
 (8, 'Pavidcha', 'Arayaphong', 'winwinja@hotmail.com', NULL, NULL, NULL, NULL, 'i', '2016-08-19 07:57:36'),
 (9, 'Satinee Assavaniwej ', '0813432864', 'satineesand@gmail.com', NULL, NULL, NULL, NULL, 'i', '2016-08-22 01:27:09'),
-(10, 'Satinee Assavaniwej ', '0813432864', 'satineesand@gmail.com', NULL, NULL, NULL, NULL, 'i', '2016-08-22 02:39:15'),
+(10, 'Satinee Assavaniwej ', '0813432864', 'satineesand@gmail.com', '13782092', '1600.00', '55.64', '05', 'a', '2016-08-22 02:39:15'),
 (11, 'Kitty', '0816165430', 'kitiratv@gmail.com', '13816103', '800.00', '30.00', '02', 'a', '2016-08-26 01:42:49'),
-(12, 'Masao Masuda', '08945456655', 'fwkn1769@mb.infoweb.ne.jp', NULL, NULL, NULL, NULL, 'i', '2016-09-08 07:45:34'),
-(13, 'Jake Waters', '', '', NULL, NULL, NULL, NULL, 'i', '2016-09-09 12:47:03'),
+(12, 'Masao Masuda', '08945456655', 'fwkn1769@mb.infoweb.ne.jp', '13476976', '1.00', '0.04', '02', 'a', '2016-09-08 07:45:34'),
+(13, 'Jake Waters', '', '', '13477185', '1.00', '0.03', '06', 'a', '2016-09-09 12:47:03'),
 (14, 'smith', '', '', NULL, NULL, NULL, NULL, 'i', '2016-09-09 12:49:47'),
 (15, '555', '', '', NULL, NULL, NULL, NULL, 'i', '2016-09-16 04:47:47'),
 (16, 'Parin Chiemwong', '0925213311', 'ilovespongbob@hotmail.com', NULL, NULL, NULL, NULL, 'i', '2016-10-03 12:00:57'),
@@ -874,7 +1007,7 @@ INSERT INTO `st_invoice` (`id`, `customer_name`, `customer_tel`, `customer_email
 (36, 'Oak Saino', '0973420270', 'shwejasmine.sat@gmail.com', NULL, NULL, NULL, NULL, 'i', '2016-12-26 03:46:09'),
 (37, 'Satoko Saino', '0973420270', 'shwejasmine.sat@gmail.com', '15077855', '350.00', '13.13', '02', 'i', '2016-12-26 05:37:31'),
 (38, 'Satoko Saino', '0973420270', 'shwejasmine.sat@gmail.com', NULL, NULL, NULL, NULL, 'i', '2016-12-26 05:56:24'),
-(39, 'Oak Saino', '0973420270', 'shwejasmine.sat@gmail.com', NULL, NULL, NULL, NULL, 'i', '2016-12-26 07:37:11'),
+(39, 'Oak Saino', '0973420270', 'shwejasmine.sat@gmail.com', '15079717', '350.00', '13.13', '02', 'a', '2016-12-26 07:37:11'),
 (40, 'Jessica Nauckhoff', '+46707811604', 'jessica@nauckhoff.se', NULL, NULL, NULL, NULL, 'i', '2016-12-27 14:03:46'),
 (41, 'Panida', 'Thaworn', 'panida_thaworn@hotmail.com', NULL, NULL, NULL, NULL, 'i', '2017-01-01 09:31:17'),
 (42, '', '', '', NULL, NULL, NULL, NULL, 'i', '2017-01-01 13:47:08'),
@@ -931,7 +1064,48 @@ INSERT INTO `st_invoice` (`id`, `customer_name`, `customer_tel`, `customer_email
 (93, 'Parth Shah', '0824449383', 'parth98shah@gmail.com', NULL, NULL, NULL, NULL, 'i', '2017-06-08 10:12:08'),
 (94, 'surya', '0859999199', 'dheerendar@gmail.com', NULL, NULL, NULL, NULL, 'i', '2017-06-10 05:34:03'),
 (95, 'Matthew Bruggen', '0879810730', 'matthew_bruggen@hotmail.com', '17491944', '1050.00', '39.38', '02', 'a', '2017-06-17 15:19:50'),
-(96, 'Ernesto Caraveo', '09017424061', 'latinopsyd@yahoo.com', NULL, NULL, NULL, NULL, 'i', '2017-06-23 01:49:47');
+(96, 'Ernesto Caraveo', '09017424061', 'latinopsyd@yahoo.com', '17542228', '6300.00', '236.25', '02', 'a', '2017-06-23 01:49:47'),
+(97, 'Opas Assanee', '0929822892', 'i-am-bert@hotmail.com', '17562625', '700.00', '26.25', '02', 'a', '2017-06-25 05:37:56'),
+(98, 'Paiboon L.', '0817628497', 'l_paiboon@yahoo.com', '17607015', '2100.00', '78.75', '02', 'a', '2017-06-29 10:04:11'),
+(99, 'Alex Ankn', '66943070650', 'marusikan@gmail.com', '17644029', '700.00', '26.25', '02', 'a', '2017-07-03 04:03:22'),
+(100, 'Joyce lim', '0962396501', 'enjoy.nz@hotmail.com', NULL, NULL, NULL, NULL, 'i', '2017-07-19 15:21:36'),
+(101, 'Nori Brixen', '0925518407', 'norichak@gmail.com', '17823041', '1560.00', '58.50', '02', 'a', '2017-07-20 04:18:12'),
+(102, 'Onuma Skaalheim ', '0980169188', 'onskaal@gmail.com', NULL, NULL, NULL, NULL, 'i', '2017-07-31 01:01:16'),
+(103, 'k', '', '', NULL, NULL, NULL, NULL, 'i', '2017-08-03 08:44:33'),
+(104, 'Justin', '0967216446', 'jeredtonjatron15972@gmail.com', '17979286', '700.00', '0.00', '06', 'p', '2017-08-03 09:29:36'),
+(105, 'Aviela daves', '0628380693', 'and-225@hotmail.com', '17991731', '700.00', '0.00', '06', 'p', '2017-08-04 10:18:22'),
+(106, 'GUIGNARD Damien', '0952471047', 'damien.guignard@gmail.com', NULL, NULL, NULL, NULL, 'i', '2017-08-28 04:30:26'),
+(107, 'Damien Guignard', '0952471047', 'damien.guignard@gmail.com', NULL, NULL, NULL, NULL, 'i', '2017-08-28 04:38:07'),
+(108, 'Saga Khaled Ali Hassan barghash', '0615602811', 'sagabarghash26@gmail.com', NULL, NULL, NULL, NULL, 'i', '2017-09-01 10:50:24'),
+(109, 'Ernesto Caraveo', '09017424061', 'latinopsyd@yahoo.com', NULL, NULL, NULL, NULL, 'i', '2017-09-12 09:20:21'),
+(110, 'Manuel Hutter', '0868162727', 'manuelhutter@hotmail.com', '18456795', '2100.00', '78.75', '02', 'a', '2017-09-14 10:57:07'),
+(111, 'Amelia ', '0951051872', 'amel_prasetio@yahoo.com', NULL, NULL, NULL, NULL, 'i', '2017-09-22 02:27:30'),
+(112, 'Marina ', '0943070650', 'marusikan@gmail.com', '18529488', '700.00', '26.25', '02', 'a', '2017-09-22 03:25:45'),
+(113, 'Kuhn Lisa', '095-815-2486', 'bolor9719@gmail.com', NULL, NULL, NULL, NULL, 'i', '2017-10-05 07:34:48'),
+(114, 'David Melody', '080 392 8806', 'melodydavid@hotmail.com', NULL, NULL, NULL, NULL, 'i', '2017-10-07 05:03:47'),
+(115, 'Marina Anashkina ', '0943070650', 'marusikan@gmail.com', '18712820', '700.00', '26.25', '02', 'a', '2017-10-08 01:32:07'),
+(116, 'ปุญฐิตา หาญไชยพิบูลย์กุล', '0816406540', 'fon5354@hotmail.com', '18818416', '1070.00', '40.13', '02', 'a', '2017-10-16 14:39:14'),
+(117, 'Nutcha', '0868863414', '', NULL, NULL, NULL, NULL, 'i', '2017-10-20 08:51:42'),
+(118, 'Patnaree', '0942826693', 'snowinputney@gmail.com', NULL, NULL, NULL, NULL, 'i', '2017-10-22 13:23:50'),
+(119, 'Antonio Jose de Souza Ramos', '0859263151', 'antoniosramos@uol.com.br', NULL, NULL, NULL, NULL, 'i', '2017-10-23 10:13:53'),
+(120, 'Lucy Johnson', '0633619318', 'lulujohnson2@hotmail.com', NULL, NULL, NULL, NULL, 'i', '2017-10-23 20:25:47'),
+(121, 'Antonio Jose de Souza Ramos', '0859263151', 'antoniosramos@uol.com.br', '18893923', '980.00', '36.75', '02', 'a', '2017-10-24 03:18:04'),
+(122, 'gavin roper', '0618382182', 'gjroper@yahoo.com', NULL, NULL, NULL, NULL, 'i', '2017-11-05 07:54:05'),
+(123, 'gavin roper', '0618382182', 'gjroper@yahoo.com', '19000789', '350.00', '13.13', '02', 'a', '2017-11-05 08:08:16'),
+(124, 'Paiboon', '0817628497', 'l_paiboon@yahoo.com', NULL, NULL, NULL, NULL, 'i', '2017-11-11 16:43:55'),
+(125, 'Matthew Bruggen', '0879810730', 'matthew_bruggen@hotmail.com', '19101137', '1050.00', '39.38', '02', 'a', '2017-11-18 01:44:31'),
+(126, 'Laura Sargeant', '0628673028', 'laurasarge@hotmail.com', NULL, NULL, NULL, NULL, 'i', '2017-11-22 06:14:46'),
+(127, 'Sutheemon Lertsakuncharoen', '099-054-9993', 'sutheemon_hsm@hotmail.com', NULL, NULL, NULL, NULL, 'i', '2017-12-06 04:13:59'),
+(128, 'Rachnee', '0817101688', 'bosky76@hotmail.com', NULL, NULL, NULL, NULL, 'i', '2017-12-09 05:32:42'),
+(129, 'panida', '0936595623', 'panida@bangkok-rockinjump.com', NULL, NULL, NULL, NULL, 'i', '2017-12-14 13:56:23'),
+(130, 'Unalienable Chomngarm', '0646467519', 'chomngarm@comcast.net', NULL, NULL, NULL, NULL, 'i', '2017-12-26 04:29:30'),
+(131, 'Rie Sato', '0899385747', 'jwdwjwdw@yahoo.com', NULL, NULL, NULL, NULL, 'i', '2017-12-27 01:25:17'),
+(132, 'Rie Sato', '0899385747', 'jwdwjwdw@yahoo.com', NULL, NULL, NULL, NULL, 'i', '2017-12-27 02:41:11'),
+(133, 'YUKO MORI', '0929242297', 'yucomolee@gmail.com', NULL, NULL, NULL, NULL, 'i', '2017-12-28 01:47:25'),
+(134, 'Matthew Hunt', '0645910959', 'matt@writingbymatt.com', NULL, NULL, NULL, NULL, 'i', '2017-12-28 18:10:48'),
+(135, 'hiruta', '080', 'hiruta.koiyo@gmail.com', NULL, NULL, NULL, NULL, 'i', '2018-01-01 22:43:39'),
+(136, 'SACHIYO HIRUTA', '08065794866', 'hiruta.koiyo@gmail.com', NULL, NULL, NULL, NULL, 'i', '2018-01-03 01:02:28'),
+(137, 'ddd', '098899000', 'k@gmail.com', NULL, NULL, NULL, NULL, 'i', '2018-01-12 06:31:54');
 
 -- --------------------------------------------------------
 
@@ -948,7 +1122,7 @@ CREATE TABLE IF NOT EXISTS `st_invoice_item` (
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `st_invoice_item_invoice_id_foreign` (`invoice_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=103 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=147 ;
 
 --
 -- dump ตาราง `st_invoice_item`
@@ -1052,7 +1226,51 @@ INSERT INTO `st_invoice_item` (`id`, `invoice_id`, `type`, `name`, `price`, `qua
 (99, 93, 'jump', '60 Minutes of Jump', '350.00', 4),
 (100, 94, 'jump', '60 Minutes of Jump', '350.00', 3),
 (101, 95, 'jump', '60 Minutes of Jump', '350.00', 3),
-(102, 96, 'jump', '120 Minutes of Jump', '700.00', 9);
+(102, 96, 'jump', '120 Minutes of Jump', '700.00', 9),
+(103, 97, 'jump', '120 Minutes of Jump', '700.00', 1),
+(104, 98, 'jump', '120 Minutes of Jump', '700.00', 3),
+(105, 99, 'jump', '60 Minutes of Jump', '350.00', 2),
+(106, 100, 'jump', 'Student Day', '390.00', 2),
+(107, 101, 'jump', 'Student Day', '390.00', 4),
+(108, 102, 'jump', 'Unlimited Jump (Monday)', '490.00', 2),
+(109, 103, 'jump', 'Rockin'' Friday (4 hrs.@4-8pm)', '700.00', 1),
+(110, 104, 'jump', 'Rockin'' Friday (4 hrs.@4-8pm)', '700.00', 1),
+(111, 105, 'jump', '60 Minutes of Jump', '350.00', 2),
+(112, 106, 'jump', 'Unlimited Jump (Monday)', '490.00', 11),
+(113, 107, 'jump', 'Unlimited Jump (Monday)', '490.00', 11),
+(114, 108, 'jump', 'Tripwire (2 Games)', '45.00', 5),
+(115, 108, 'jump', '120 Minutes of Jump', '700.00', 3),
+(116, 109, 'jump', '60 Minutes of Jump', '350.00', 2),
+(117, 110, 'jump', '60 Minutes of Jump', '350.00', 6),
+(118, 111, 'jump', '60 Minutes of Jump', '350.00', 2),
+(119, 112, 'jump', '60 Minutes of Jump', '350.00', 2),
+(120, 113, 'jump', '60 Minutes of Jump', '350.00', 3),
+(121, 114, 'jump', '60 Minutes of Jump', '350.00', 2),
+(122, 115, 'jump', '60 Minutes of Jump', '350.00', 0),
+(123, 115, 'jump', '120 Minutes of Jump', '700.00', 1),
+(124, 116, 'jump', 'Unlimited Jump (Tuesday)', '490.00', 2),
+(125, 116, 'jump', 'Tripwire (2 Games)', '45.00', 2),
+(126, 117, 'jump', '60 Minutes of Jump', '350.00', 2),
+(127, 118, 'jump', 'Unlimited Jump (Monday)', '490.00', 4),
+(128, 119, 'jump', 'Unlimited Jump (Tuesday)', '490.00', 2),
+(129, 120, 'jump', '60 Minutes of Jump', '350.00', 2),
+(130, 121, 'jump', 'Unlimited Jump (Tuesday)', '490.00', 2),
+(131, 122, 'jump', '60 Minutes of Jump', '350.00', 1),
+(132, 123, 'jump', '60 Minutes of Jump', '350.00', 1),
+(133, 124, 'jump', '60 Minutes of Jump', '350.00', 2),
+(134, 125, 'jump', '60 Minutes of Jump', '350.00', 3),
+(135, 126, 'jump', 'Fun Pack (4 Jumpers + Food & Drink)', '1290.00', 2),
+(136, 127, 'jump', 'Unlimited Jump (Monday)', '490.00', 3),
+(137, 128, 'jump', '60 Minutes of Jump', '350.00', 2),
+(138, 129, 'pass', 'CHRISTMAS PARTY (ALL DAY JUMP 599 B. @ 23 DEC 17)', '599.00', 1),
+(139, 130, 'jump', 'Unlimited Jump (Tuesday)', '490.00', 2),
+(140, 131, 'jump', 'Student Day', '390.00', 6),
+(141, 132, 'jump', 'Student Day', '390.00', 6),
+(142, 133, 'jump', 'Student Day', '390.00', 4),
+(143, 134, 'jump', '60 Minutes of Jump', '350.00', 2),
+(144, 135, 'jump', '60 Minutes of Jump', '350.00', 4),
+(145, 136, 'jump', '60 Minutes of Jump', '350.00', 4),
+(146, 137, 'jump', '60 Minutes of Jump', '350.00', 2);
 
 -- --------------------------------------------------------
 
@@ -1070,7 +1288,7 @@ CREATE TABLE IF NOT EXISTS `st_invoice_item_jump` (
   PRIMARY KEY (`id`),
   KEY `st_invoice_item_jump_invoice_item_id_foreign` (`invoice_item_id`),
   KEY `st_invoice_item_jump_ticket_id_foreign` (`ticket_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=103 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=146 ;
 
 --
 -- dump ตาราง `st_invoice_item_jump`
@@ -1165,7 +1383,50 @@ INSERT INTO `st_invoice_item_jump` (`id`, `invoice_item_id`, `ticket_id`, `descr
 (99, 99, 360, 'STANDARD JUMP TIME', '2017-06-09', '16:30:00'),
 (100, 100, 360, 'STANDARD JUMP TIME', '2017-06-11', '10:30:00'),
 (101, 101, 360, 'STANDARD JUMP TIME', '2017-06-18', '10:00:00'),
-(102, 102, 361, 'STANDARD JUMP TIME', '2017-06-23', '16:30:00');
+(102, 102, 361, 'STANDARD JUMP TIME', '2017-06-23', '16:30:00'),
+(103, 103, 365, 'STANDARD JUMP TIME', '2017-06-25', '15:00:00'),
+(104, 104, 365, 'STANDARD JUMP TIME', '2017-07-01', '11:00:00'),
+(105, 105, 364, 'STANDARD JUMP TIME', '2017-07-03', '12:30:00'),
+(106, 106, 368, 'ROCKIN'' THURSDAYS (exclude Holidays)', '2017-07-27', '14:00:00'),
+(107, 107, 368, 'ROCKIN'' THURSDAYS (exclude Holidays)', '2017-07-20', '13:30:00'),
+(108, 108, 367, 'ROCKIN'' MONDAYS (exclude Holidays)', '2017-07-31', '11:30:00'),
+(109, 109, 374, 'ROCKIN'' FRIDAYS (700 Baht/ 4 Hrs. @ 4-8PM)', '2017-08-04', '04:00:00'),
+(110, 110, 374, 'ROCKIN'' FRIDAYS (700 Baht/ 4 Hrs. @ 4-8PM)', '2017-08-04', '04:00:00'),
+(111, 111, 364, 'STANDARD JUMP TIME', '2017-08-05', '16:30:00'),
+(112, 112, 379, 'ROCKIN'' MONDAYS (exclude Holidays)', '2017-08-28', '15:00:00'),
+(113, 113, 379, 'ROCKIN'' MONDAYS (exclude Holidays)', '2017-08-28', '14:30:00'),
+(114, 114, 371, 'Tripwire (Laser Room)', '2017-09-01', '19:00:00'),
+(115, 115, 378, 'STANDARD JUMP TIME', '2017-09-01', '18:00:00'),
+(116, 116, 403, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-09-13', '14:00:00'),
+(117, 117, 403, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-09-16', '16:30:00'),
+(118, 118, 403, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-09-22', '10:00:00'),
+(119, 119, 403, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-09-22', '12:00:00'),
+(120, 120, 407, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-10-07', '14:00:00'),
+(121, 121, 407, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-10-07', '13:30:00'),
+(122, 122, 407, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-10-08', '11:00:00'),
+(123, 123, 408, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-10-08', '11:00:00'),
+(124, 124, 410, 'ROCKIN'' TUESDAYS (Unlimited jump 490 baht/ exclude holidays)', '2017-10-17', '12:00:00'),
+(125, 125, 371, 'Tripwire (Laser Room)', '2017-10-17', '13:00:00'),
+(126, 126, 407, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-10-20', '16:30:00'),
+(127, 127, 409, 'ROCKIN'' MONDAYS (Unlimited jump 490 baht/ exclude holidays)', '2017-10-23', '11:00:00'),
+(128, 128, 410, 'ROCKIN'' TUESDAYS (Unlimited jump 490 baht/ exclude holidays)', '2017-10-24', '14:00:00'),
+(129, 129, 407, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-10-25', '14:30:00'),
+(130, 130, 410, 'ROCKIN'' TUESDAYS (Unlimited jump 490 baht/ exclude holidays)', '2017-10-24', '13:30:00'),
+(131, 131, 418, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-11-05', '00:00:00'),
+(132, 132, 418, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-11-05', '00:00:00'),
+(133, 133, 418, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-11-12', '11:00:00'),
+(134, 134, 418, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-11-18', '10:00:00'),
+(135, 135, 425, 'ROCKIN'' FUN PACK (SAT & SUN ONLY)', '2017-12-09', '10:00:00'),
+(136, 136, 420, 'ROCKIN'' MONDAYS (Unlimited jump 490 baht/ exclude holidays)', '2017-12-25', '14:00:00'),
+(137, 137, 418, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-12-09', '13:00:00'),
+(138, 139, 421, 'ROCKIN'' TUESDAYS (Unlimited jump 490 baht/ exclude holidays)', '2017-12-26', '15:00:00'),
+(139, 140, 422, 'ROCKIN'' THURSDAYS (2 hrs. 390 baht/ exclude holidays)', '2017-12-28', '15:30:00'),
+(140, 141, 422, 'ROCKIN'' THURSDAYS (2 hrs. 390 baht/ exclude holidays)', '2017-12-28', '15:30:00'),
+(141, 142, 422, 'ROCKIN'' THURSDAYS (2 hrs. 390 baht/ exclude holidays)', '2017-12-28', '15:30:00'),
+(142, 143, 418, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2017-12-31', '15:30:00'),
+(143, 144, 418, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2018-01-03', '14:00:00'),
+(144, 145, 418, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2018-01-03', '17:00:00'),
+(145, 146, 418, 'STANDARD JUMP TIME (1 hr. 350 baht)', '2018-01-13', '11:00:00');
 
 -- --------------------------------------------------------
 
@@ -1184,7 +1445,14 @@ CREATE TABLE IF NOT EXISTS `st_invoice_item_pass` (
   PRIMARY KEY (`id`),
   KEY `st_invoice_item_pass_invoice_item_id_foreign` (`invoice_item_id`),
   KEY `st_invoice_item_pass_pass_id_foreign` (`pass_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- dump ตาราง `st_invoice_item_pass`
+--
+
+INSERT INTO `st_invoice_item_pass` (`id`, `invoice_item_id`, `pass_id`, `first_name`, `last_name`, `telephone`, `email`) VALUES
+(1, 138, 10, 'panida', 'thipsotikul', '0936595623', 'panida@bangkok-rockinjump.com');
 
 -- --------------------------------------------------------
 
@@ -1200,7 +1468,7 @@ CREATE TABLE IF NOT EXISTS `st_pass` (
   `price` decimal(8,2) NOT NULL,
   `status` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'i',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- dump ตาราง `st_pass`
@@ -1212,7 +1480,8 @@ INSERT INTO `st_pass` (`id`, `name`, `duration_from`, `duration_to`, `price`, `s
 (3, 'VIP PASS - 12 Months', '2016-01-01', '2017-04-30', '20500.00', 'a'),
 (6, 'Rockin'' Robics Pass', '2017-04-01', '2017-06-30', '5000.00', 'a'),
 (7, 'Rockin'' Membership', '2017-05-01', '2017-12-31', '590.00', 'a'),
-(9, 'Rockin'' Fit & Fun Camp!', '2017-05-01', '2017-05-31', '15500.00', 'a');
+(9, 'Rockin'' Fit & Fun Camp!', '2017-05-01', '2017-05-31', '15500.00', 'i'),
+(10, 'CHRISTMAS PARTY (ALL DAY JUMP 599 B. @ 23 DEC 17)', '2017-12-23', '2017-12-23', '599.00', 'a');
 
 -- --------------------------------------------------------
 
