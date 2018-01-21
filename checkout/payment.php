@@ -45,14 +45,30 @@ if ($charge['status'] == 'successful') {
 <script src="<?=$host?>/js/jquery.min.js"></script>
 <script type="text/javascript">
     $(function () {
+        // Send mail to customer with transactions detail
         $.ajax({
             url:  '<?=$host?>/app/services/invoice/sendEmail.php',
             method: 'post',
             data: { id: '<?=$_POST['inv']?>' },
             dataType: 'json',
             success: function (response) {
-                console.log(response);
                 if (response.success == true) {
+                    // After send mail, update status and transaction
+                    $.ajax({
+                        url:  '<?=$host?>/app/services/invoice/updateInvoice.php',
+                        method: 'post',
+                        data: { 
+                            id: '<?=$_POST['inv']?>',
+                            approveCode: '<?=$charge['id']?>',
+                            amount: parseInt(<?=$_POST['totalPrice']?>) / 100,
+                            status: 'a'
+                        },
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.success == true) {
+                            }
+                        }
+                    });
                 }
             }
         });
