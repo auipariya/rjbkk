@@ -14,6 +14,10 @@ $charge = OmiseCharge::create(array(
     'card' => $_POST['omiseToken'],
     'description' => 'Transaction No.: ' . $_POST['inv']
 ));
+
+$fee = $_POST['totalPrice'] / 100;
+$fee = $fee * 0.0365;           // ค่าบริการ Omise 3.65 %
+$fee = $fee + ($fee * 0.07);    // VAT 7%
 ?>
 
 <head>
@@ -61,6 +65,7 @@ if ($charge['status'] == 'successful') {
                             id: '<?=$_POST['inv']?>',
                             approveCode: '<?=$charge['id']?>',
                             amount: parseInt(<?=$_POST['totalPrice']?>) / 100,
+                            fee: '<?=$fee?>',
                             status: 'a'
                         },
                         dataType: 'json',

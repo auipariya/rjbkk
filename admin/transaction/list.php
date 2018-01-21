@@ -94,8 +94,8 @@
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <span class="col-xs-12 col-sm-4 control-label">METHOD</span>
-                            <label class="col-xs-12 col-sm-8 control-label" aria-label="method"></label>
+                            <span class="col-xs-12 col-sm-4 control-label">CHARGE REF.</span>
+                            <label class="col-xs-12 col-sm-8 control-label" aria-label="chargeRef"></label>
                         </div>
                     </div>
                 </div>
@@ -152,19 +152,19 @@
                     <div class="col-sm-offset-6 col-sm-6">
                         <table class="table table-striped table-bordered table-condensed">
                             <tr>
-                                <td style="width: 40%">SUBTOTAL</td>
+                                <td style="width: 50%">SUBTOTAL</td>
                                 <td class="text-right">฿<span aria-label="subtotal"></span></td>
                             </tr>
                             <tr>
-                                <td style="width: 40%">SALE TAX</td>
+                                <td>SALE TAX</td>
                                 <td class="text-right">฿<span aria-label="saleTax"></span></td>
                             </tr>
                             <tr>
-                                <td style="width: 40%">FEE</td>
+                                <td>FEE<small>(Omise 3.65% + VAT 7%)</small></td>
                                 <td class="text-right">฿<span aria-label="fee"></span></td>
                             </tr>
                             <tr style="font-weight: 600;">
-                                <td style="width: 40%">ORDER TOTAL</td>
+                                <td>ORDER TOTAL</td>
                                 <td class="text-right">฿<span aria-label="orderTotal"></span></td>
                             </tr>
                         </table>
@@ -256,8 +256,10 @@
                         $('[aria-label="createdAt"]').empty().append(new Date(invoice.created_at).toLocaleString());
                         $('[aria-label="phone"]').empty().append(invoice.customer_tel);
                         $('[aria-label="email"]').empty().append(invoice.customer_email);
-                        var method = <?=json_encode($lang['paysbuy']['method'])?>;
-                        $('[aria-label="method"]').empty().append(method[invoice.method]);
+                        //var method = <?=json_encode($lang['paysbuy']['method'])?>;
+                        //$('[aria-label="method"]').empty().append(method[invoice.method]);
+                        $('[aria-label="chargeRef"]').empty().append(invoice.approve_code);
+                        
                         $('[aria-label="subtotal"]').empty().append(parseFloat(invoice.amount).formatMoney(2, '.', ','));
                         $('[aria-label="saleTax"]').empty().append(parseFloat(0).formatMoney(2, '.', ','));
                         $('[aria-label="fee"]').empty().append(parseFloat(invoice.fee).formatMoney(2, '.', ','));

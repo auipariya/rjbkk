@@ -15,9 +15,9 @@ header('Content-Type: application/json');
 $returnData = $returnDataPattern;
 
 if(isset($_POST)){
-    $query = 'UPDATE st_invoice SET approve_code=?, amount=?, status=? WHERE id=?';
+    $query = 'UPDATE st_invoice SET approve_code=?, amount=?, fee=?, status=? WHERE id=?';
     $stmt = $db->prepare($query);
-    $stmt->bind_param('sdsi', $_POST['approveCode'], $_POST['amount'], $_POST['status'], $_POST['id']);
+    $stmt->bind_param('sddsi', $_POST['approveCode'], $_POST['amount'], $_POST['fee'], $_POST['status'], $_POST['id']);
     if($stmt->execute()){
         $stmt->close();
     }

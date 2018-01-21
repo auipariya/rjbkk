@@ -92,7 +92,7 @@ if(isset($_POST)){
         $mail->setFrom($email['sender'], $email['senderName']);
         $mail->addAddress($invoice['customer_email'], $invoice['customer_name']);
         $mail->AddCC($email['sender'], $email['senderName']);
-        $mail->Subject = ": Successful transaction no. " . $_POST['id'];
+        $mail->Subject = "Successful transaction no. " . $_POST['id'];
         $mail->msgHTML($message);
     
         //send the message, check for errors
