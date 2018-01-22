@@ -2,23 +2,12 @@
 
 include $_SERVER['DOCUMENT_ROOT'] . '/webstore/app/GlobalVariable.php';
 
-// remove prod
-header('location: ' . $host);
-
-$psbId = $paysbuyAcc['psbID'];
-$account = $paysbuyAcc['biz'];
+$psbId = $paysbuyAcc['psbID']; //"4406058375";
+$account = $paysbuyAcc['biz']; //"areerat@bangkok-rockinjump.com";
+$description ="Products & Services";
 $price = $_SESSION['totalPrice'];
 $postURL = $host . "/checkout/payment.php";
-$description = $_POST['name'];
-if($_POST['telephone'] != '' && $_POST['email'] != '') {
-    $description .= ', Contact: ' . $_POST['telephone'] . '(' . $_POST['email'] . ')';
-}
-else if ($_POST['telephone'] != '') {
-    $description .= ', Contact: ' . $_POST['telephone'];
-}
-else if ($_POST['email'] != '') {
-    $description .= ', Contact: ' . $_POST['email'];
-}
+
 ?>
 <!--
 DEMO: http://demo.paysbuy.com/paynow.aspx

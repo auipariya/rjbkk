@@ -53,8 +53,8 @@
                         <div class="col-md-6"><input type="tel" class="form-control" name="telephone" placeholder="<?=$lang['label']['telephone']?>"></div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 hidden-xs control-label"><?=$lang['label']['email']?><b style="color: red;">*</b></label>
-                        <div class="col-md-6"><input type="email" class="form-control" name="email" required placeholder="<?=$lang['label']['email']?>"></div>
+                        <label class="col-md-4 hidden-xs control-label"><?=$lang['label']['email']?></label>
+                        <div class="col-md-6"><input type="email" class="form-control" name="email" placeholder="<?=$lang['label']['email']?>"></div>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -1,8 +1,8 @@
 <?php
-header('location: buyticket');
+// header('location: buyticket');
 ?>
 
-<!-- <html lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -35,4 +35,4 @@ header('location: buyticket');
     <img src="images/under-construction-640.png">
     <img src="images/rj-logo.png">
 </body>
-</html> -->
+</html>

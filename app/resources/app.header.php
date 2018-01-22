@@ -9,6 +9,8 @@ if(!isset($_SESSION['productOrder'])){ $_SESSION['productOrder'] = []; }
 if(!isset($_SESSION['totalItem'])){ $_SESSION['totalItem'] = 0; }
 if(!isset($_SESSION['totalPrice'])){ $_SESSION['totalPrice'] = 0; }
 
+// remove prod
+header('location: ' . $host);
 ?>
 
 <!DOCTYPE html>
