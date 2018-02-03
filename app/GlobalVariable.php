@@ -28,15 +28,20 @@ $virtualDir = $_SERVER['DOCUMENT_ROOT'] . '/' . $appName;
 /**
  * MySQL
  */
-if ($_SERVER['SERVER_NAME'] != 'www.bangkok-rockinjump.com') {
-    $hostName = 'localhost';                // host name
-    $hostUser = 'root';         			// user
-    $hostPass = '';             	        // password
-    $database = 'bangkokdb';    			// database name
-} else {
+if ($_SERVER['SERVER_NAME'] == 'www.bangkok-rockinjump.com') {
     $hostName = 'wh-db51.csloxinfo.com';    // host name
     $hostUser = 'bangkok';         			// user
     $hostPass = 'a3Q23FN9CW';             	// password
+    $database = 'bangkokdb';    			// database name
+} else if ($_SERVER['SERVER_NAME'] == 'www2.bangkok-rockinjump.com') {
+    $hostName = 'localhost';    // host name
+    $hostUser = 'bangkok';         			// user
+    $hostPass = 'Bud85#7c';             	// password
+    $database = 'bangkokdb';    			// database name
+} else {
+    $hostName = 'localhost';                // host name
+    $hostUser = 'root';         			// user
+    $hostPass = '';             	        // password
     $database = 'bangkokdb';    			// database name
 }
 $db = new mysqli($hostName, $hostUser, $hostPass, $database);
