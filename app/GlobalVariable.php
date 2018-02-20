@@ -131,16 +131,6 @@ $admin = [
 ];
 
 /**
- * paysbuy account
- */
-$paysbuyAcc = [
-    'psbID' => '4406058375',
-    'biz' => 'contact@bangkok-rockinjump.com',
-    //'biz' => 'areerat@bangkok-rockinjump.com',
-    'secureCode' => 'E48248A02613F9AE009C5F9F0658C0BA'
-];
-
-/**
  * Omise account
  */
 $omise = [
@@ -154,6 +144,7 @@ $omise = [
  */
 $email = [
     'mailServer' => 'mail.bangkok-rockinjump.com',
-    'sender' => 'pariya.kam@mail.kmutt.ac.th',
+    'senderPrimary' => 'pariya.kam@mail.kmutt.ac.th',
+    'senderSecond' => 'pariya-dream@hotmail.com',
     'senderName' => "ROCKIN' JUMP Bangkok"
 ];

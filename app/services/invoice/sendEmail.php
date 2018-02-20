@@ -89,9 +89,10 @@ if(isset($_POST)){
         //Whether to use SMTP authentication
         $mail->SMTPAuth = false;
     
-        $mail->setFrom($email['sender'], $email['senderName']);
+        $mail->setFrom($email['senderPrimary'], $email['senderName']);
         $mail->addAddress($invoice['customer_email'], $invoice['customer_name']);
-        $mail->AddCC($email['sender'], $email['senderName']);
+        $mail->AddCC($email['senderPrimary'], $email['senderName']);
+        $mail->AddCC($email['senderSecond'], $email['senderName']);
         $mail->Subject = "Successful transaction no. " . $_POST['id'];
         $mail->msgHTML($message);
     
