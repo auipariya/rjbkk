@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { AppBaseModule } from './app-base/app-base.module';
+import { BuyTicketModule } from './buy-ticket/buy-ticket.module';
 
 import { AppComponent } from './app.component';
 
@@ -10,7 +12,9 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppBaseModule,
+    BuyTicketModule
   ],
   providers: [],
   bootstrap: [AppComponent]
