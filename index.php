@@ -1,8 +1,8 @@
 <?php
-header('location: buyticket');
+// header('location: buyticket');
 ?>
 
-<!-- <html lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -21,18 +21,23 @@ header('location: buyticket');
         color: #ffffff;
     }
     
-    img:first-child {
+    .construction {
         width: 256px;
     }
 
-    img:last-child {
+    .logo {
         width: 256px;
         margin-top: 1rem;
     }
     </style>
 </head>
 <body>
-    <img src="images/under-construction-640.png">
-    <img src="images/rj-logo.png">
+    <img src="images/under-construction-640.png" class="construction">
+    <img src="images/rj-logo.png" class="logo">
+    <p>
+    สอบถามข้อมูลเพิ่มเติม<br>
+    Telephone: 02-212-0222<br>
+    Email: <a href="mailto:contact@bangkok-rockinjump.com">contact@bangkok-rockinjump.com</a>
+    </p>
 </body>
-</html> -->
+</html>
