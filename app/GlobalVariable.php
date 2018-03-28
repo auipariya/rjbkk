@@ -29,12 +29,11 @@ $virtualDir = $_SERVER['DOCUMENT_ROOT'] . '/' . $appName;
  * MySQL
  */
 if ($_SERVER['SERVER_NAME'] == 'www.bangkok-rockinjump.com') {
-    $hostName = 'wh-db51.csloxinfo.com';    // host name
-    $hostUser = 'bangkok';         			// user
-    $hostPass = 'a3Q23FN9CW';             	// password
-    $database = 'bangkokdb';    			// database name
-} else if ($_SERVER['SERVER_NAME'] == 'www2.bangkok-rockinjump.com') {
-    $hostName = 'localhost';    // host name
+    // $hostName = 'wh-db51.csloxinfo.com';    // host name
+    // $hostUser = 'bangkok';         			// user
+    // $hostPass = 'a3Q23FN9CW';             	// password
+    // $database = 'bangkokdb';    			// database name
+    $hostName = 'localhost';                // host name
     $hostUser = 'bangkok';         			// user
     $hostPass = 'Bud85#7c';             	// password
     $database = 'bangkokdb';    			// database name
@@ -136,6 +135,8 @@ $admin = [
 $omise = [
     'pkey' => 'pkey_test_5a7aigtfk8mrzkqms1q',
     'skey' => 'skey_test_5a7aigtg5thdjbp7ez4',
+    // 'pkey' => 'pkey_5b45qvpl05vdd0kp815',
+    // 'skey' => 'skey_5bf7g8mkw7648ptolrv',
     'apiv' => '2017-11-02'
 ];
 
@@ -146,5 +147,7 @@ $email = [
     'mailServer' => 'mail.bangkok-rockinjump.com',
     'senderPrimary' => 'pariya.kam@mail.kmutt.ac.th',
     'senderSecond' => 'pariya-dream@hotmail.com',
+    // 'senderPrimary' => 'contact@bangkok-rockinjump.com',
+    // 'senderSecond' => 'areerat@bangkok-rockinjump.com',
     'senderName' => "ROCKIN' JUMP Bangkok"
 ];

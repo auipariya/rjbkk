@@ -1,8 +1,8 @@
 <?php
-// header('location: buyticket');
+header('location: buyticket');
 ?>
 
-<html lang="en">
+<!--<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -40,4 +40,4 @@
     Email: <a href="mailto:contact@bangkok-rockinjump.com">contact@bangkok-rockinjump.com</a>
     </p>
 </body>
-</html>
+</html>-->
